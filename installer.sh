@@ -68,7 +68,12 @@ if [[ "$MODE" == "install" ]]; then
     tar xzf "${PROD}.tgz"
     cd "$PROD"
 
-    SCRIPT="install.${CP}.sh"
+    if [[ "$PROD" == "csf" ]]; then
+        SCRIPT="install.${CP}.sh"
+    else
+        SCRIPT="install.sh"
+    fi
+
     if [[ ! -f "$SCRIPT" ]]; then
         echo "Install script $SCRIPT not found"
         exit 1
