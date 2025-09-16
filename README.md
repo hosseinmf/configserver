@@ -1,4 +1,51 @@
-# ConfigServer Installer
+
+# ConfigServer Installer (English)
+
+The **ConfigServer Installer** is a simple script to **install or uninstall** free ConfigServer products  
+(**cmc, cmm, cmq, cse, csf**) on various hosting control panels.
+
+Supported control panels:
+- cPanel
+- CWP
+- CyberPanel
+- DirectAdmin
+- Interworx
+- Generic
+- Vesta
+
+---
+
+## 🚀 Quick One-Liner Run
+
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/hosseinmf/configserver/main/installer.sh)
+```
+
+This command will:
+1. Ask for the control panel.
+2. Ask which product to manage (cmc, cmm, cmq, cse, csf).
+3. Let you choose **install** or **uninstall**.
+4. Download and execute the latest release directly from GitHub.
+
+---
+
+## 🛠 Requirements
+- Linux operating system
+- `curl` and `tar` installed
+- `sudo` or root privileges
+
+---
+
+## 📂 Repository Structure
+```
+configserver/
+├─ installer.sh    # Main install/uninstall script
+└─ README.md       # This file
+```
+---
+---
+# نصب اسکریپت های کانفیگ سرور
 
 اسکریپت **ConfigServer Installer** ابزاری ساده برای نصب یا حذف محصولات رایگان ConfigServer  
 شامل **cmc، cmm، cmq، cse و csf** بر روی کنترل‌پنل‌های مختلف است.
@@ -51,53 +98,6 @@ configserver/
 شما می‌توانید از این اسکریپت استفاده، تغییر یا بازنشر کنید، مشروط بر آنکه متن مجوز را رعایت کنید.
 
 ---
-
----
-
-# ConfigServer Installer (English)
-
-The **ConfigServer Installer** is a simple script to **install or uninstall** free ConfigServer products  
-(**cmc, cmm, cmq, cse, csf**) on various hosting control panels.
-
-Supported control panels:
-- cPanel
-- CWP
-- CyberPanel
-- DirectAdmin
-- Interworx
-- Generic
-- Vesta
-
----
-
-## 🚀 Quick One-Liner Run
-
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/hosseinmf/configserver/main/installer.sh)
-```
-
-This command will:
-1. Ask for the control panel.
-2. Ask which product to manage (cmc, cmm, cmq, cse, csf).
-3. Let you choose **install** or **uninstall**.
-4. Download and execute the latest release directly from GitHub.
-
----
-
-## 🛠 Requirements
-- Linux operating system
-- `curl` and `tar` installed
-- `sudo` or root privileges
-
----
-
-## 📂 Repository Structure
-```
-configserver/
-├─ installer.sh    # Main install/uninstall script
-└─ README.md       # This file
-```
 
 ---
 
