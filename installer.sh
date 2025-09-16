@@ -67,7 +67,7 @@ cd "$TMP_DIR"
 
 if [[ "$MODE" == "install" ]]; then
     # Download the selected product archive
-    TGZ_URL="https://github.com/waytotheweb/scripts/blob/main/${PROD}.tgz?raw=true"
+    TGZ_URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/${PROD}.tgz"
     echo "Downloading ${PROD} ..."
     curl -L -o "${PROD}.tgz" "$TGZ_URL"
     tar xzf "${PROD}.tgz"
@@ -86,35 +86,35 @@ if [[ "$MODE" == "install" ]]; then
     echo "Installation completed."
 
 else
-    # Uninstall commands per product using GitHub curl for all
+    # Uninstall commands per product using Raw GitHub URLs
     case "$PROD" in
         cmc)
             echo "Running uninstall for cmc ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/cmc/cmc_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmc/cmc_uninstall.sh | bash
             ;;
         cmm)
             echo "Running uninstall for cmm ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/cmm/cmm_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmm/cmm_uninstall.sh | bash
             ;;
         cmq)
             echo "Running uninstall for cmq ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/cmq/cmq_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmq/cmq_uninstall.sh | bash
             ;;
         cse)
             echo "Running uninstall for cse ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/cse/cse_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cse/cse_uninstall.sh | bash
             ;;
         csf)
             echo "Running uninstall for csf ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/csf/csf_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/csf_uninstall.sh | bash
             ;;
         cxs)
             echo "Running uninstall for cxs ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/cxs/cxs_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cxs/cxs_uninstall.sh | bash
             ;;
         osm)
             echo "Running uninstall for osm ..."
-            curl -sL https://github.com/waytotheweb/scripts/blob/main/uninstallers/osm/osm_uninstall.sh?raw=true | bash
+            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/osm/osm_uninstall.sh | bash
             ;;
         *)
             echo "No uninstall script available for ${PROD}"
