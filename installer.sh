@@ -5,10 +5,10 @@
 
 set -e
 
-GREEN="\e[32m"; RED="\e[31m"; NC="\e[0m"
-echo -e "${GREEN}*** ConfigServer Installer ***${NC}"
+echo "*** ConfigServer Installer ***"
 
-echo "کنترل پنل را انتخاب کنید:"
+# Ask for control panel
+echo "Select your control panel:"
 echo "1) cpanel"
 echo "2) cwp"
 echo "3) cyberpanel"
@@ -16,7 +16,7 @@ echo "4) directadmin"
 echo "5) interworx"
 echo "6) generic"
 echo "7) vesta"
-read -rp "شماره گزینه: " CP_OPT
+read -rp "Enter the number of your choice: " CP_OPT
 
 case $CP_OPT in
   1) CP="cpanel" ;;
@@ -26,16 +26,17 @@ case $CP_OPT in
   5) CP="interworx" ;;
   6) CP="generic" ;;
   7) CP="vesta" ;;
-  *) echo -e "${RED}گزینه نامعتبر${NC}"; exit 1 ;;
+  *) echo "Invalid option"; exit 1 ;;
 esac
 
-echo "محصول مورد نظر:"
+# Ask for product
+echo "Select the ConfigServer product:"
 echo "1) cmc"
 echo "2) cmm"
 echo "3) cmq"
 echo "4) cse"
 echo "5) csf"
-read -rp "شماره گزینه: " PROD_OPT
+read -rp "Enter the number of your choice: " PROD_OPT
 
 case $PROD_OPT in
   1) PROD="cmc" ;;
@@ -43,29 +44,32 @@ case $PROD_OPT in
   3) PROD="cmq" ;;
   4) PROD="cse" ;;
   5) PROD="csf" ;;
-  *) echo -e "${RED}گزینه نامعتبر${NC}"; exit 1 ;;
+  *) echo "Invalid option"; exit 1 ;;
 esac
 
-read -rp "install یا uninstall ? [i/u]: " ACTION
+# Install or uninstall
+read -rp "Do you want to install or uninstall? [i/u]: " ACTION
 if [[ "$ACTION" == "i" ]]; then
     MODE="install"
 elif [[ "$ACTION" == "u" ]]; then
     MODE="uninstall"
 else
-    echo -e "${RED}گزینه نامعتبر${NC}"
+    echo "Invalid option"
     exit 1
 fi
 
 TMP_DIR=$(mktemp -d)
 cd "$TMP_DIR"
 
+# Download the selected product archive
 TGZ_URL="https://github.com/waytotheweb/scripts/blob/main/${PROD}.tgz?raw=true"
-echo -e "${GREEN}دانلود ${PROD} ...${NC}"
+echo "Downloading ${PROD} ..."
 curl -L -o "${PROD}.tgz" "$TGZ_URL"
 
 tar xzf "${PROD}.tgz"
 cd "$PROD"
 
+# Determine the correct install/uninstall script
 if [[ "$MODE" == "install" ]]; then
     SCRIPT="install.${CP}.sh"
 else
@@ -77,12 +81,12 @@ else
 fi
 
 if [[ ! -f "$SCRIPT" ]]; then
-    echo -e "${RED}اسکریپت $SCRIPT پیدا نشد${NC}"
+    echo "Script $SCRIPT not found"
     exit 1
 fi
 
 chmod +x "$SCRIPT"
-echo -e "${GREEN}اجرای $SCRIPT ...${NC}"
+echo "Running $SCRIPT ..."
 sudo ./"$SCRIPT"
 
-echo -e "${GREEN}پایان عملیات.${NC}"
+echo "Operation completed."
