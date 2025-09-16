@@ -82,14 +82,16 @@ if [[ "$MODE" == "install" ]]; then
     echo "Installation completed."
 
 else
-    # Uninstall using panel-specific script
-    # All uninstall scripts follow the pattern: uninstall.<panel>.sh
-    UNINSTALL_SCRIPT="uninstall.${CP}.sh"
+    # Uninstall
+    if [[ "$PROD" == "csf" ]]; then
+        UNINSTALL_SCRIPT="uninstall.${CP}.sh"
+        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/${UNINSTALL_SCRIPT}"
+    else
+        UNINSTALL_SCRIPT="${PROD}_uninstall.sh"
+        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/${PROD}/${UNINSTALL_SCRIPT}"
+    fi
 
-    # Download the uninstall script from GitHub Raw
-    URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/${PROD}/${UNINSTALL_SCRIPT}"
     echo "Running uninstall for ${PROD} on ${CP} ..."
     curl -sL "$URL" | bash
-
     echo "Uninstallation completed."
 fi
