@@ -62,14 +62,12 @@ TMP_DIR=$(mktemp -d)
 cd "$TMP_DIR"
 
 if [[ "$MODE" == "install" ]]; then
-    # Download the selected product archive
     TGZ_URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/${PROD}.tgz"
     echo "Downloading ${PROD} ..."
     curl -L -o "${PROD}.tgz" "$TGZ_URL"
     tar xzf "${PROD}.tgz"
     cd "$PROD"
 
-    # Determine the correct install script
     SCRIPT="install.${CP}.sh"
     if [[ ! -f "$SCRIPT" ]]; then
         echo "Install script $SCRIPT not found"
@@ -84,14 +82,12 @@ if [[ "$MODE" == "install" ]]; then
 else
     # Uninstall
     if [[ "$PROD" == "csf" ]]; then
-        UNINSTALL_SCRIPT="uninstall.${CP}.sh"
-        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/${UNINSTALL_SCRIPT}"
+        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/uninstall.${CP}.sh"
     else
-        UNINSTALL_SCRIPT="${PROD}_uninstall.sh"
-        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/${PROD}/${UNINSTALL_SCRIPT}"
+        URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/${PROD}/${PROD}_uninstall.sh"
     fi
 
-    echo "Running uninstall for ${PROD} on ${CP} ..."
+    echo "Running uninstall for ${PROD} ..."
     curl -sL "$URL" | bash
     echo "Uninstallation completed."
 fi
