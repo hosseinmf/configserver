@@ -36,8 +36,6 @@ echo "2) cmm"
 echo "3) cmq"
 echo "4) cse"
 echo "5) csf"
-echo "6) cxs"
-echo "7) osm"
 read -rp "Enter the number of your choice: " PROD_OPT
 
 case $PROD_OPT in
@@ -46,8 +44,6 @@ case $PROD_OPT in
   3) PROD="cmq" ;;
   4) PROD="cse" ;;
   5) PROD="csf" ;;
-  6) PROD="cxs" ;;
-  7) PROD="osm" ;;
   *) echo "Invalid option"; exit 1 ;;
 esac
 
@@ -86,7 +82,7 @@ if [[ "$MODE" == "install" ]]; then
     echo "Installation completed."
 
 else
-    # Uninstall commands per product using Raw GitHub URLs
+    # Uninstall commands using Raw GitHub URLs for all 5 products
     case "$PROD" in
         cmc)
             echo "Running uninstall for cmc ..."
@@ -107,14 +103,6 @@ else
         csf)
             echo "Running uninstall for csf ..."
             curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/csf_uninstall.sh | bash
-            ;;
-        cxs)
-            echo "Running uninstall for cxs ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cxs/cxs_uninstall.sh | bash
-            ;;
-        osm)
-            echo "Running uninstall for osm ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/osm/osm_uninstall.sh | bash
             ;;
         *)
             echo "No uninstall script available for ${PROD}"
