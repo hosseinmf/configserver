@@ -82,32 +82,14 @@ if [[ "$MODE" == "install" ]]; then
     echo "Installation completed."
 
 else
-    # Uninstall commands using Raw GitHub URLs for all 5 products
-    case "$PROD" in
-        cmc)
-            echo "Running uninstall for cmc ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmc/cmc_uninstall.sh | bash
-            ;;
-        cmm)
-            echo "Running uninstall for cmm ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmm/cmm_uninstall.sh | bash
-            ;;
-        cmq)
-            echo "Running uninstall for cmq ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cmq/cmq_uninstall.sh | bash
-            ;;
-        cse)
-            echo "Running uninstall for cse ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/cse/cse_uninstall.sh | bash
-            ;;
-        csf)
-            echo "Running uninstall for csf ..."
-            curl -sL https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/csf/csf_uninstall.sh | bash
-            ;;
-        *)
-            echo "No uninstall script available for ${PROD}"
-            exit 1
-            ;;
-    esac
+    # Uninstall using panel-specific script
+    # All uninstall scripts follow the pattern: uninstall.<panel>.sh
+    UNINSTALL_SCRIPT="uninstall.${CP}.sh"
+
+    # Download the uninstall script from GitHub Raw
+    URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/uninstallers/${PROD}/${UNINSTALL_SCRIPT}"
+    echo "Running uninstall for ${PROD} on ${CP} ..."
+    curl -sL "$URL" | bash
+
     echo "Uninstallation completed."
 fi
