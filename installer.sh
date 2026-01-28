@@ -101,7 +101,7 @@ execute_script_with_sudo() {
 }
 
 if [[ "$MODE" == "install" ]]; then
-    TGZ_URL="https://raw.githubusercontent.com/waytotheweb/scripts/main/${PROD}.tgz"
+    TGZ_URL="https://github.com/wnpower/waytotheweb-scripts/blob/main/${PROD}.tgz"
     echo "Downloading ${PROD} ..."
     curl -L -o "${PROD}.tgz" "$TGZ_URL"
     tar xzf "${PROD}.tgz"
